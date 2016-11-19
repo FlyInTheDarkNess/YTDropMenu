@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "YTDropMenu.h"
 
 @interface ViewController ()
+
+@property (nonatomic,strong) YTDropMenu *dropMenu;
 
 @end
 
@@ -17,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSArray *arr = @[@"gg",@"kk",@"ll"];
+    self.dropMenu = [YTDropMenu initWithDataSource:arr NavTitile:@"HIHA" ToNavigationControllerView:self.view];
 }
 
 
@@ -25,5 +30,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)dropButtonClick:(id)sender {
+
+}
 
 @end

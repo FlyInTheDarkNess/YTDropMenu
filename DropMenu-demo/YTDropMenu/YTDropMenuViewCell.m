@@ -10,7 +10,7 @@
 
 @implementation YTDropMenuViewCell
 
-+ (instancetype)buttonCellWithTableView:(UITableView *)tableView{
++ (instancetype)dropMenuCellWithTableView:(UITableView *)tableView{
     static NSString *reuseId = @"reuseCell";
     YTDropMenuViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
     if (cell == nil) {

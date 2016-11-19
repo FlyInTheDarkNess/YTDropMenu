@@ -19,6 +19,7 @@
 		C99AA3A21DE0412E00534B4E /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = C99AA3A01DE0412E00534B4E /* check.png */; };
 		C99AA3A51DE0416B00534B4E /* YTDropMenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3A41DE0416B00534B4E /* YTDropMenuViewCell.m */; };
 		C99AA3A81DE04B2C00534B4E /* YTDropMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3A71DE04B2C00534B4E /* YTDropMenu.m */; };
+		C99AA3AB1DE081FF00534B4E /* YTViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3AA1DE081FF00534B4E /* YTViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		C99AA3A41DE0416B00534B4E /* YTDropMenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTDropMenuViewCell.m; sourceTree = "<group>"; };
 		C99AA3A61DE04B2C00534B4E /* YTDropMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTDropMenu.h; sourceTree = "<group>"; };
 		C99AA3A71DE04B2C00534B4E /* YTDropMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTDropMenu.m; sourceTree = "<group>"; };
+		C99AA3A91DE081FF00534B4E /* YTViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTViewModel.h; sourceTree = "<group>"; };
+		C99AA3AA1DE081FF00534B4E /* YTViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTViewModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,8 @@
 				C99AA3A41DE0416B00534B4E /* YTDropMenuViewCell.m */,
 				C99AA3A61DE04B2C00534B4E /* YTDropMenu.h */,
 				C99AA3A71DE04B2C00534B4E /* YTDropMenu.m */,
+				C99AA3A91DE081FF00534B4E /* YTViewModel.h */,
+				C99AA3AA1DE081FF00534B4E /* YTViewModel.m */,
 			);
 			path = YTDropMenu;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				C99AA3731DE03DD000534B4E /* ViewController.m in Sources */,
 				C99AA3A51DE0416B00534B4E /* YTDropMenuViewCell.m in Sources */,
 				C99AA3701DE03DD000534B4E /* AppDelegate.m in Sources */,
+				C99AA3AB1DE081FF00534B4E /* YTViewModel.m in Sources */,
 				C99AA3A81DE04B2C00534B4E /* YTDropMenu.m in Sources */,
 				C99AA36D1DE03DCF00534B4E /* main.m in Sources */,
 			);

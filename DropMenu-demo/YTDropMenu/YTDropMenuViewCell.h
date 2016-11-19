@@ -12,4 +12,7 @@
 
 @property (nonatomic,strong) UIImageView* checkedView;
 
+
++ (instancetype)dropMenuCellWithTableView:(UITableView *)tableView;
+
 @end
