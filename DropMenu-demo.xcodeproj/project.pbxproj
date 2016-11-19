@@ -15,6 +15,10 @@
 		C99AA37B1DE03DD000534B4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C99AA3791DE03DD000534B4E /* LaunchScreen.storyboard */; };
 		C99AA3861DE03DD000534B4E /* DropMenu_demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3851DE03DD000534B4E /* DropMenu_demoTests.m */; };
 		C99AA3911DE03DD000534B4E /* DropMenu_demoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3901DE03DD000534B4E /* DropMenu_demoUITests.m */; };
+		C99AA3A11DE0412E00534B4E /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = C99AA39F1DE0412E00534B4E /* cancel.png */; };
+		C99AA3A21DE0412E00534B4E /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = C99AA3A01DE0412E00534B4E /* check.png */; };
+		C99AA3A51DE0416B00534B4E /* YTDropMenuViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3A41DE0416B00534B4E /* YTDropMenuViewCell.m */; };
+		C99AA3A81DE04B2C00534B4E /* YTDropMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = C99AA3A71DE04B2C00534B4E /* YTDropMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,12 @@
 		C99AA38C1DE03DD000534B4E /* DropMenu-demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DropMenu-demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99AA3901DE03DD000534B4E /* DropMenu_demoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DropMenu_demoUITests.m; sourceTree = "<group>"; };
 		C99AA3921DE03DD000534B4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C99AA39F1DE0412E00534B4E /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		C99AA3A01DE0412E00534B4E /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		C99AA3A31DE0416B00534B4E /* YTDropMenuViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTDropMenuViewCell.h; sourceTree = "<group>"; };
+		C99AA3A41DE0416B00534B4E /* YTDropMenuViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTDropMenuViewCell.m; sourceTree = "<group>"; };
+		C99AA3A61DE04B2C00534B4E /* YTDropMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTDropMenu.h; sourceTree = "<group>"; };
+		C99AA3A71DE04B2C00534B4E /* YTDropMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTDropMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +111,7 @@
 		C99AA36A1DE03DCF00534B4E /* DropMenu-demo */ = {
 			isa = PBXGroup;
 			children = (
+				C99AA39E1DE0412E00534B4E /* YTDropMenu */,
 				C99AA36E1DE03DD000534B4E /* AppDelegate.h */,
 				C99AA36F1DE03DD000534B4E /* AppDelegate.m */,
 				C99AA3711DE03DD000534B4E /* ViewController.h */,
@@ -138,6 +149,19 @@
 				C99AA3921DE03DD000534B4E /* Info.plist */,
 			);
 			path = "DropMenu-demoUITests";
+			sourceTree = "<group>";
+		};
+		C99AA39E1DE0412E00534B4E /* YTDropMenu */ = {
+			isa = PBXGroup;
+			children = (
+				C99AA39F1DE0412E00534B4E /* cancel.png */,
+				C99AA3A01DE0412E00534B4E /* check.png */,
+				C99AA3A31DE0416B00534B4E /* YTDropMenuViewCell.h */,
+				C99AA3A41DE0416B00534B4E /* YTDropMenuViewCell.m */,
+				C99AA3A61DE04B2C00534B4E /* YTDropMenu.h */,
+				C99AA3A71DE04B2C00534B4E /* YTDropMenu.m */,
+			);
+			path = YTDropMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,8 +271,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C99AA37B1DE03DD000534B4E /* LaunchScreen.storyboard in Resources */,
+				C99AA3A21DE0412E00534B4E /* check.png in Resources */,
 				C99AA3781DE03DD000534B4E /* Assets.xcassets in Resources */,
 				C99AA3761DE03DD000534B4E /* Main.storyboard in Resources */,
+				C99AA3A11DE0412E00534B4E /* cancel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C99AA3731DE03DD000534B4E /* ViewController.m in Sources */,
+				C99AA3A51DE0416B00534B4E /* YTDropMenuViewCell.m in Sources */,
 				C99AA3701DE03DD000534B4E /* AppDelegate.m in Sources */,
+				C99AA3A81DE04B2C00534B4E /* YTDropMenu.m in Sources */,
 				C99AA36D1DE03DCF00534B4E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
