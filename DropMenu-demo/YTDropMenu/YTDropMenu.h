@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YTDropMenuViewCell.h"
-#import "YTViewModel.h"
+
 
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 #define ScreenWidth [[UIScreen mainScreen] bounds].size.width
@@ -36,9 +36,11 @@
 
 @property (nonatomic, strong) NSMutableIndexSet *selectedIndexes;
 
-+ (instancetype)initWithDataSource:(NSArray *)array
+
+
+- (instancetype)initWithDataSource:(NSArray *)array
                          NavTitile:(NSString *)title
-        ToNavigationControllerView:(UIView *)navigationControllerView;
+            ToNavigationController:(UINavigationController *)navigationController;
 
 
 @end

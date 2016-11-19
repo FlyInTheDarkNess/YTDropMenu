@@ -18,6 +18,7 @@
         cell.textLabel.font = [UIFont systemFontOfSize:13.0];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.checkedView = [[UIImageView alloc]init];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell addSubview:cell.checkedView];
     }
     

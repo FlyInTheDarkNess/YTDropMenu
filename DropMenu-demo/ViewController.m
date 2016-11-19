@@ -20,8 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSArray *arr = @[@"gg",@"kk",@"ll"];
-    self.dropMenu = [YTDropMenu initWithDataSource:arr NavTitile:@"HIHA" ToNavigationControllerView:self.view];
+    NSArray *arr = [NSArray arrayWithObjects:@"gs",@"ddd",@"rrrr" ,nil];
+    self.dropMenu = [[YTDropMenu alloc ]initWithDataSource:arr NavTitile:@"HIHA" ToNavigationController:self.navigationController];
 }
 
 
