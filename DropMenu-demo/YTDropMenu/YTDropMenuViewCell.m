@@ -31,7 +31,7 @@
     [super layoutSubviews];
     CGFloat checkedView_width = 17.0f;    
     
-    self.checkedView.frame = CGRectMake((self.frame.size.width - checkedView_width * 1.5 ), self.frame.size.height/2 - checkedView_width/2, checkedView_width, checkedView_width);
+    self.checkedView.frame = CGRectMake((self.frame.size.width - checkedView_width * 2 ), self.frame.size.height/2 - checkedView_width/2, checkedView_width, checkedView_width);
     
 }
 

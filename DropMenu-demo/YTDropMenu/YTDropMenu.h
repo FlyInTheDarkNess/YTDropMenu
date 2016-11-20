@@ -27,20 +27,23 @@
        CancelImage:(UIImage *)cancelImage
         CheckImage:(UIImage *)checkImage;
 
-
+- (void)dropMenu:(YTDropMenu *)dropMenu didSelectIndexPath:(NSIndexSet *)selIndexPath;
 
 @end
 
 
 @interface YTDropMenu : UIView
 
-@property (nonatomic, strong) NSMutableIndexSet *selectedIndexes;
-
+@property (nonatomic, weak) id <YTDropMenuDelegate> delegate;
 
 
 - (instancetype)initWithDataSource:(NSArray *)array
                          NavTitile:(NSString *)title
             ToNavigationController:(UINavigationController *)navigationController;
+
+- (void)show;
+
+- (void)hide;
 
 
 @end

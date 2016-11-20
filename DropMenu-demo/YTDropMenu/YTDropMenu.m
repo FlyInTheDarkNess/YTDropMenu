@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) NSString *navTitle;
 @property (nonatomic, strong) NSArray *DataSourceArray;
-@property (nonatomic, strong,readwrite) NSIndexPath *selIndexPath;
+@property (nonatomic, strong) NSMutableIndexSet *selIndexPath;
 
 @end
 
@@ -27,11 +27,11 @@
 @implementation YTDropMenu
 
     CGFloat defaultLineViewHeight = 0.4;
-    CGFloat defaultCloseButtonHeight = 28.0;
-    CGFloat defaultCloseButtonWidth = 28.0;
+    CGFloat defaultCloseButtonHeight = 17.0;
+    CGFloat defaultCloseButtonWidth = 17.0;
     CGFloat defaultNavViewHeight;
 
-    static NSString *cellReuseID = @"LPPopupListViewCell";
+    static NSString *cellReuseID = @"reuseID";
 
 - (instancetype)initWithDataSource:(NSArray *)array
                          NavTitile:(NSString *)title
@@ -44,16 +44,17 @@
     if(self){
 
     self.DataSourceArray = [NSArray arrayWithArray:array];
+    self.selIndexPath = [[NSMutableIndexSet alloc]init];
         
     self.navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, defaultNavViewHeight)];
     [self addSubview:self.navView];
-        self.navView.backgroundColor = [UIColor redColor];
+    self.navView.backgroundColor = [UIColor purpleColor];
         
     self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navView.frame.size.height, ScreenWidth, defaultLineViewHeight)];
-    self.lineView.backgroundColor = [UIColor blackColor];
+    self.lineView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.lineView];
     
-    self.closeButton = [[UIButton alloc]initWithFrame:CGRectMake((self.navView.frame.size.width-defaultCloseButtonWidth -5 ), self.navView.frame.size.height/2 - defaultLineViewHeight/2, defaultCloseButtonWidth, defaultCloseButtonHeight)];
+    self.closeButton = [[UIButton alloc]initWithFrame:CGRectMake((self.navView.frame.size.width-defaultCloseButtonWidth * 2 -3), self.navView.frame.size.height/2 - defaultLineViewHeight/2, defaultCloseButtonWidth, defaultCloseButtonHeight)];
     [self.closeButton setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(closeClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.closeButton];
@@ -73,7 +74,7 @@
     [self addSubview:self.maskView];
     
     [navigationController.view addSubview:self];
-  //  self.hidden = YES;
+    self.hidden = YES;
     }
     return self;
 }
@@ -108,7 +109,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
-    if (self.selIndexPath.row == indexPath.row) {
+    if ([self.selIndexPath containsIndex:indexPath.row]){
             cell.checkedView.image = [UIImage imageNamed:@"check"];
         } else {
             cell.checkedView.image = nil;
@@ -118,16 +119,30 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    self.selIndexPath = indexPath;
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.selIndexPath removeAllIndexes];
+    [self.selIndexPath addIndex:indexPath.row];
     [self.tableView reloadData];
-    
-    NSLog(@"sel %d",self.selIndexPath.row);
 
 }
 
 - (void)closeClick{
-    NSLog(@"closeClick");
+    [self hide];
+}
+
+- (void)show{
+    self.hidden = NO;
+}
+
+- (void)hide{
+    
+    if ([self.delegate respondsToSelector:@selector(dropMenu:didSelectIndexPath:)]) {
+        [self.delegate dropMenu:self didSelectIndexPath:self.selIndexPath];
+    }
+    
+    self.hidden = YES;
+    
+    
 }
 
 
