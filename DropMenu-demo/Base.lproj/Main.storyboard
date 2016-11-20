@@ -21,12 +21,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JI3-3O-7Fb">
-                                <rect key="frame" x="16" y="72" width="343" height="575"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="JI3-3O-7Fb">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JI3-3O-7Fb" secondAttribute="bottom" id="2S9-EA-0nd"/>
+                            <constraint firstItem="JI3-3O-7Fb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GoJ-yN-6E3"/>
+                            <constraint firstAttribute="trailing" secondItem="JI3-3O-7Fb" secondAttribute="trailing" id="HBM-7R-ER8"/>
+                            <constraint firstItem="JI3-3O-7Fb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="z4J-fd-5NI"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XXK-1T-N3K">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="zrl-ka-pEP">
@@ -65,4 +70,7 @@
             <point key="canvasLocation" x="-298" y="1073"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="1" width="293" height="220"/>
+    </resources>
 </document>

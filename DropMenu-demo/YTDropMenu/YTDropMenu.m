@@ -47,8 +47,23 @@
     self.selIndexPath = [[NSMutableIndexSet alloc]init];
         
     self.navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, defaultNavViewHeight)];
-    [self addSubview:self.navView];
     self.navView.backgroundColor = [UIColor purpleColor];
+        self.navView.alpha = 1.0;
+        
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
+    self.titleLabel.text = title;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    self.titleLabel.textColor = [UIColor whiteColor];
+    [self.navView addSubview:self.titleLabel];
+        
+    [self addSubview:self.navView];
+    
+    
+  
+        
+        
         
     self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navView.frame.size.height, ScreenWidth, defaultLineViewHeight)];
     self.lineView.backgroundColor = [UIColor whiteColor];
@@ -66,13 +81,9 @@
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor purpleColor];
     [self addSubview:self.tableView];
-    
+
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
         
-    self.maskView = [[UIView alloc]init];
-    self.maskView.alpha = 0.9f;
-    self.maskView.backgroundColor = [UIColor lightGrayColor];
-    [self addSubview:self.maskView];
-    
     [navigationController.view addSubview:self];
     self.hidden = YES;
     }
@@ -84,13 +95,13 @@
 
     YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
     
+    self.titleLabel.frame = CGRectMake(0, self.closeButton.frame.origin.y - 3, self.navView.frame.size.width, defaultNavViewHeight/3);
+    
     if(_DataSourceArray.count<=8){
         self.tableView.frame= CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * _DataSourceArray.count);
     }else{
         self.tableView.frame= CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * 8);
     }
-    self.maskView.frame = CGRectMake(0, self.tableView.frame.origin.y+self.tableView.frame.size.height, ScreenWidth, ScreenHeight - self.maskView.frame.origin.y);
-
 }
 
 
