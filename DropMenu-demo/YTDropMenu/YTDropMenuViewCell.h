@@ -13,6 +13,6 @@
 @property (nonatomic,strong) UIImageView* checkedView;
 
 
-+ (instancetype)dropMenuCellWithTableView:(UITableView *)tableView;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

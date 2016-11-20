@@ -18,7 +18,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) NSString *navTitle;
-@property (nonatomic,strong) NSArray *DataSourceArray;
+@property (nonatomic, strong) NSArray *DataSourceArray;
+@property (nonatomic, strong,readwrite) NSIndexPath *selIndexPath;
 
 @end
 
@@ -30,18 +31,23 @@
     CGFloat defaultCloseButtonWidth = 28.0;
     CGFloat defaultNavViewHeight;
 
+    static NSString *cellReuseID = @"LPPopupListViewCell";
+
 - (instancetype)initWithDataSource:(NSArray *)array
                          NavTitile:(NSString *)title
-            ToNavigationController:(UINavigationController *)navigationController{
+            ToNavigationController:(UINavigationController *)navigationController
+{
 
     defaultNavViewHeight = navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height;
     
     self = [super initWithFrame:[UIScreen mainScreen].bounds];
     if(self){
-   // dropMenu.viewModel = [[YTViewModel alloc]init];
 
+    self.DataSourceArray = [NSArray arrayWithArray:array];
+        
     self.navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, defaultNavViewHeight)];
     [self addSubview:self.navView];
+        self.navView.backgroundColor = [UIColor redColor];
         
     self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navView.frame.size.height, ScreenWidth, defaultLineViewHeight)];
     self.lineView.backgroundColor = [UIColor blackColor];
@@ -57,9 +63,9 @@
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.backgroundColor = [UIColor blueColor];
+    self.tableView.backgroundColor = [UIColor purpleColor];
     [self addSubview:self.tableView];
-    self.DataSourceArray = [NSArray arrayWithArray:array];
+    
         
     self.maskView = [[UIView alloc]init];
     self.maskView.alpha = 0.9f;
@@ -67,7 +73,7 @@
     [self addSubview:self.maskView];
     
     [navigationController.view addSubview:self];
-    self.hidden = YES;
+  //  self.hidden = YES;
     }
     return self;
 }
@@ -75,14 +81,15 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
 
-    YTDropMenuViewCell *cell = [YTDropMenuViewCell dropMenuCellWithTableView:self.tableView];
-    if(array.count <= 8){
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * array.count)];
-    }else{
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * 8)];
-    }
+    YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
     
-    self.maskView = [[UIView alloc]initWithFrame:CGRectMake(0, self.tableView.frame.origin.y+self.tableView.bounds.size.height, ScreenWidth, ScreenHeight-self.maskView.frame.origin.y)];
+    if(_DataSourceArray.count<=8){
+        self.tableView.frame= CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * _DataSourceArray.count);
+    }else{
+        self.tableView.frame= CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * 8);
+    }
+    self.maskView.frame = CGRectMake(0, self.tableView.frame.origin.y+self.tableView.frame.size.height, ScreenWidth, ScreenHeight - self.maskView.frame.origin.y);
+
 }
 
 
@@ -95,23 +102,29 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return _DataSourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //    if ([self.selectedIndexes containsIndex:indexPath.row]) {
-    //        cell.rightImageView.image = [UIImage imageNamed:@"checkMark"];
-    //    } else {
-    //        cell.rightImageView.image = nil;
-    //    }
-    YTDropMenuViewCell *cell = [YTDropMenuViewCell dropMenuCellWithTableView:tableView];
-    cell.textLabel.text = self.DataSourceArray[indexPath.row];
+    YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
+    if (self.selIndexPath.row == indexPath.row) {
+            cell.checkedView.image = [UIImage imageNamed:@"check"];
+        } else {
+            cell.checkedView.image = nil;
+        }
+    cell.textLabel.text = [_DataSourceArray objectAtIndex:indexPath.row];
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.selIndexPath = indexPath;
+    [self.tableView reloadData];
+    
+    NSLog(@"sel %d",self.selIndexPath.row);
 
+}
 
 - (void)closeClick{
     NSLog(@"closeClick");

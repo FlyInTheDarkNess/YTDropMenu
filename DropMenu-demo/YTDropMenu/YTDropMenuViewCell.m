@@ -10,20 +10,20 @@
 
 @implementation YTDropMenuViewCell
 
-+ (instancetype)dropMenuCellWithTableView:(UITableView *)tableView{
-    static NSString *reuseId = @"reuseCell";
-    YTDropMenuViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
-    if (cell == nil) {
-        cell.textLabel.textColor = [UIColor whiteColor];
-        cell.textLabel.font = [UIFont systemFontOfSize:13.0];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.checkedView = [[UIImageView alloc]init];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell addSubview:cell.checkedView];
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if(self){
+        self.textLabel.textColor = [UIColor whiteColor];
+        self.textLabel.font = [UIFont systemFontOfSize:13.0];
+        self.textLabel.textAlignment = NSTextAlignmentCenter;
+        self.checkedView = [[UIImageView alloc]init];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self addSubview:self.checkedView];
+        self.backgroundColor = [UIColor purpleColor];
     }
     
-    return cell;
-    
+    return self;
 }
 
 - (void)layoutSubviews{
