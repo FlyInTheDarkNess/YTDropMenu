@@ -16,7 +16,7 @@
 @property (nonatomic, strong) UIView *navView;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) NSString *navTitle;
 @property (nonatomic, strong) NSArray *DataSourceArray;
 @property (nonatomic, strong) NSMutableIndexSet *selIndexPath;
@@ -30,6 +30,7 @@
     CGFloat defaultCloseButtonHeight = 17.0;
     CGFloat defaultCloseButtonWidth = 17.0;
     CGFloat defaultNavViewHeight;
+    CGFloat defaultCellRowHeight;
 
     static NSString *cellReuseID = @"reuseID";
 
@@ -40,6 +41,10 @@
 
     defaultNavViewHeight = navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height;
     
+    YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
+    defaultCellRowHeight = cell.frame.size.height;
+    
+    
     self = [super initWithFrame:[UIScreen mainScreen].bounds];
     if(self){
 
@@ -48,9 +53,9 @@
         
     self.navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, defaultNavViewHeight)];
     self.navView.backgroundColor = [UIColor purpleColor];
-        self.navView.alpha = 1.0;
+    self.navView.alpha = 1.0;
         
-    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.navView.frame.size.height, ScreenWidth, defaultLineViewHeight)];
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.text = title;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -58,34 +63,39 @@
     self.titleLabel.textColor = [UIColor whiteColor];
     [self.navView addSubview:self.titleLabel];
         
-    [self addSubview:self.navView];
-    
-    
+  //  [self addSubview:self.navView];
   
-        
-        
-        
-    self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navView.frame.size.height, ScreenWidth, defaultLineViewHeight)];
+    self.lineView = [[UIView alloc]init];
     self.lineView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:self.lineView];
+  //  [self addSubview:self.lineView];
     
     self.closeButton = [[UIButton alloc]initWithFrame:CGRectMake((self.navView.frame.size.width-defaultCloseButtonWidth * 2 -3), self.navView.frame.size.height/2 - defaultLineViewHeight/2, defaultCloseButtonWidth, defaultCloseButtonHeight)];
     [self.closeButton setBackgroundImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(closeClick) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.closeButton];
+    [self.navView addSubview:self.closeButton];
     
+    self.contentView = [[UIView alloc]init];
+    [self.contentView addSubview:self.navView];
+    [self.contentView addSubview:self.lineView];
+        
+        
+        
     self.tableView = [[UITableView alloc]init];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.backgroundColor = [UIColor purpleColor];
+        
+    self.tableView.tableHeaderView = self.contentView;
+        
     [self addSubview:self.tableView];
 
     self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
         
     [navigationController.view addSubview:self];
     self.hidden = YES;
+        
     }
     return self;
 }
@@ -93,15 +103,10 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
 
-    YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
-    
     self.titleLabel.frame = CGRectMake(0, self.closeButton.frame.origin.y - 3, self.navView.frame.size.width, defaultNavViewHeight/3);
     
-    if(_DataSourceArray.count<=8){
-        self.tableView.frame= CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * _DataSourceArray.count);
-    }else{
-        self.tableView.frame= CGRectMake(0, self.lineView.frame.origin.y+self.lineView.frame.size.height, ScreenWidth, cell.frame.size.height * 8);
-    }
+    self.contentView.frame = CGRectMake(0, 0, ScreenWidth,  self.navView.frame.size.height+self.lineView.frame.size.height);
+    
 }
 
 
@@ -116,6 +121,11 @@
 {
     return _DataSourceArray.count;
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return defaultNavViewHeight;
+//}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -142,7 +152,24 @@
 }
 
 - (void)show{
+    
     self.hidden = NO;
+    
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+            if(_DataSourceArray.count<=8){
+                self.tableView.frame= CGRectMake(0,0, ScreenWidth,self.contentView.frame.size.height + defaultCellRowHeight * _DataSourceArray.count);
+            }else{
+                self.tableView.frame= CGRectMake(0, 0, ScreenWidth, self.contentView.frame.size.height +defaultCellRowHeight * 8);
+            }
+        
+    }completion:^(BOOL finished) {
+        
+    }];
+   
+    
+    
+    
 }
 
 - (void)hide{
