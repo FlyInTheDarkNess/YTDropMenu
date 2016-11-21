@@ -26,7 +26,7 @@
 
 @implementation YTDropMenu
 
-    CGFloat defaultLineViewHeight = 0.4;
+    CGFloat defaultLineViewHeight = 0.3;
     CGFloat defaultCloseButtonHeight = 17.0;
     CGFloat defaultCloseButtonWidth = 17.0;
     CGFloat defaultNavViewHeight;
@@ -65,7 +65,7 @@
         
   //  [self addSubview:self.navView];
   
-    self.lineView = [[UIView alloc]init];
+    self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, self.navView.frame.size.height, ScreenWidth, defaultLineViewHeight)];
     self.lineView.backgroundColor = [UIColor whiteColor];
   //  [self addSubview:self.lineView];
     
@@ -122,10 +122,6 @@
     return _DataSourceArray.count;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return defaultNavViewHeight;
-//}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -155,7 +151,8 @@
     
     self.hidden = NO;
     
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    self.tableView.frame = CGRectMake(0, 0, ScreenWidth, 0);
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
             if(_DataSourceArray.count<=8){
                 self.tableView.frame= CGRectMake(0,0, ScreenWidth,self.contentView.frame.size.height + defaultCellRowHeight * _DataSourceArray.count);
@@ -174,11 +171,19 @@
 
 - (void)hide{
     
+    [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        self.tableView.frame = CGRectMake(0, 0, ScreenWidth, 0);
+        
+    }completion:^(BOOL finished) {
+          self.hidden = YES;
+    }];
+    
+    
     if ([self.delegate respondsToSelector:@selector(dropMenu:didSelectIndexPath:)]) {
         [self.delegate dropMenu:self didSelectIndexPath:self.selIndexPath];
     }
     
-    self.hidden = YES;
     
     
 }
