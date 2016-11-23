@@ -45,5 +45,6 @@
 
 - (void)hide;
 
+- (void)setAllColor;
 
 @end
