@@ -34,8 +34,11 @@
 
 @interface YTDropMenu : UIView
 
-@property (nonatomic, weak) id <YTDropMenuDelegate> delegate;
+@property (nonatomic,assign)BOOL isSetAllColor;
 
+@property (nonatomic,strong)UIColor *allColor;
+
+@property (nonatomic, weak) id <YTDropMenuDelegate> delegate;
 
 - (instancetype)initWithDataSource:(NSArray *)array
                          NavTitile:(NSString *)title
@@ -45,6 +48,6 @@
 
 - (void)hide;
 
-- (void)setAllColor;
+- (void)setAllColor:(UIColor *)color;
 
 @end

@@ -132,6 +132,9 @@
             cell.checkedView.image = nil;
         }
     cell.textLabel.text = [_DataSourceArray objectAtIndex:indexPath.row];
+//    if(self.isSetAllColor){
+//        cell.backgroundColor = _allColor;
+//    }
     return cell;
 }
 
@@ -185,8 +188,14 @@
     }
     
     
-    
 }
 
+- (void)setAllColor:(UIColor *)color{
+//    self.allColor = color;
+//    self.isSetAllColor = YES;
+    self.tableView.backgroundColor = color;
+    self.navView.backgroundColor = color;
+
+}
 
 @end
