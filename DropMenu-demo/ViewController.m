@@ -34,7 +34,7 @@
 - (IBAction)dropButtonClick:(id)sender {
     [self.dropMenu show];
     
-    [self.dropMenu setAllColor:[UIColor redColor]];
+    //[self.dropMenu setAllColor:[UIColor redColor]];
 }
 
 - (void)dropMenu:(YTDropMenu *)dropMenu didSelectIndexPath:(NSIndexSet *)selIndexPath{

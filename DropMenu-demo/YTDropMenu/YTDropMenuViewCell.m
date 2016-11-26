@@ -20,7 +20,7 @@
         self.checkedView = [[UIImageView alloc]init];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self addSubview:self.checkedView];
-        self.backgroundColor = [UIColor purpleColor];
+        self.backgroundColor = [UIColor clearColor];
     }
     
     return self;
