@@ -161,7 +161,10 @@
                 self.tableView.frame= CGRectMake(0, 0, ScreenWidth, self.contentView.frame.size.height +defaultCellRowHeight * 8);
             }
         
+        self.closeButton.transform = CGAffineTransformMakeRotation(3.14/4);
+
     }completion:^(BOOL finished) {
+
         
     }];
 
@@ -172,7 +175,7 @@
     [UIView animateWithDuration:0.4 delay:0 usingSpringWithDamping:.8 initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         self.tableView.frame = CGRectMake(0, 0, ScreenWidth, 0);
-        
+        self.closeButton.transform = CGAffineTransformMakeRotation(-3.14/4);
     }completion:^(BOOL finished) {
           self.hidden = YES;
     }];
