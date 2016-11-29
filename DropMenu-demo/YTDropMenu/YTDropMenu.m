@@ -39,6 +39,8 @@
             ToNavigationController:(UINavigationController *)navigationController
 {
 
+    self.isMultiselect = NO;
+    
     defaultNavViewHeight = navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height;
     
     YTDropMenuViewCell *cell = [[YTDropMenuViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuseID];
@@ -138,9 +140,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.selIndexPath removeAllIndexes];
-    [self.selIndexPath addIndex:indexPath.row];
-    [self.tableView reloadData];
+    if(self.isMultiselect == NO){
+        
+        [self.selIndexPath removeAllIndexes];
+        [self.selIndexPath addIndex:indexPath.row];
+        [self.tableView reloadData];
+    }else{
+        if([self.selIndexPath containsIndex:indexPath.row]){
+            [self.selIndexPath removeIndex:indexPath.row];
+        }else{
+            [self.selIndexPath addIndex:indexPath.row];
+        }
+        [self.tableView reloadData];
+    }
 
 }
 
@@ -180,11 +192,15 @@
           self.hidden = YES;
     }];
     
-    
-    if ([self.delegate respondsToSelector:@selector(dropMenu:didSelectIndexPath:)]) {
-        [self.delegate dropMenu:self didSelectIndexPath:self.selIndexPath];
+    if(self.isMultiselect == NO){
+        if ([self.delegate respondsToSelector:@selector(dropMenu:didSelectIndexPath:)]) {
+            [self.delegate dropMenu:self didSelectIndexPath:self.selIndexPath];
+        }
+    }else{
+        if ([self.delegate respondsToSelector:@selector(dropMenu:didMultiSelectIndexPaths:)]) {
+            [self.delegate dropMenu:self didMultiSelectIndexPaths:self.selIndexPath];
+        }
     }
-    
     
 }
 
@@ -195,4 +211,12 @@
 
 }
 
+- (void)setMultiselect:(BOOL)isMultiselect{
+    if(isMultiselect == YES){
+    
+    }else{
+    
+    }
+
+}
 @end

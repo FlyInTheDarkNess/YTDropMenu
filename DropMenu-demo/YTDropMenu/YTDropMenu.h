@@ -26,15 +26,20 @@
               Font:(UIFont *)font
        CancelImage:(UIImage *)cancelImage
         CheckImage:(UIImage *)checkImage;
-
+/*
+ *  single select
+ */
 - (void)dropMenu:(YTDropMenu *)dropMenu didSelectIndexPath:(NSIndexSet *)selIndexPath;
-
+/*
+ *  multi select
+ */
+- (void)dropMenu:(YTDropMenu *)dropMenu didMultiSelectIndexPaths:(NSIndexSet *)selIndexSet;
 @end
 
 
 @interface YTDropMenu : UIView
 
-@property (nonatomic,assign)BOOL isSetAllColor;
+@property (nonatomic,assign)BOOL isMultiselect;
 
 @property (nonatomic,strong)UIColor *allColor;
 
@@ -49,5 +54,6 @@
 - (void)hide;
 
 - (void)setAllColor:(UIColor *)color;
+
 
 @end

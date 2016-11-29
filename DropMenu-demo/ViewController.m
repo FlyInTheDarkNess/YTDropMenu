@@ -19,10 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
     NSArray *arr = [NSArray arrayWithObjects:@"gs",@"ddd",@"rrrr",@"asdfs" ,nil];
     self.dropMenu = [[YTDropMenu alloc ]initWithDataSource:arr NavTitile:@"HIHA" ToNavigationController:self.navigationController];
-    
+    self.dropMenu.isMultiselect = YES;
     self.dropMenu.delegate = self;
 }
 
@@ -34,12 +34,15 @@
 - (IBAction)dropButtonClick:(id)sender {
     [self.dropMenu show];
     
-    //[self.dropMenu setAllColor:[UIColor redColor]];
+    [self.dropMenu setAllColor:[UIColor blackColor]];
 }
 
 - (void)dropMenu:(YTDropMenu *)dropMenu didSelectIndexPath:(NSIndexSet *)selIndexPath{
-    NSLog(@"popupListViewDidHide - selectedIndexes: %@", selIndexPath.description);
+    NSLog(@"selected index  %ld", [selIndexPath firstIndex]);
 }
 
+- (void)dropMenu:(YTDropMenu *)dropMenu didMultiSelectIndexPaths:(NSIndexSet *)selIndexSet{
+    NSLog(@"mutiselected %@",selIndexSet.description);
+}
 
 @end
