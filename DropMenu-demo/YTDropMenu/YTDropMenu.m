@@ -40,6 +40,7 @@
 {
 
     self.isMultiselect = NO;
+    self.iconsArray = [NSMutableArray array];
     
     defaultNavViewHeight = navigationController.navigationBar.frame.size.height+[[UIApplication sharedApplication] statusBarFrame].size.height;
     
@@ -134,7 +135,12 @@
             cell.checkedView.image = nil;
         }
     cell.textLabel.text = [_DataSourceArray objectAtIndex:indexPath.row];
-
+    if(self.iconsArray.count >=1){
+        UIImage *image = [self.iconsArray objectAtIndex:indexPath.row];
+        cell.imageView.image = image;
+    }
+    
+    
     return cell;
 }
 
@@ -211,12 +217,13 @@
 
 }
 
-- (void)setMultiselect:(BOOL)isMultiselect{
-    if(isMultiselect == YES){
-    
-    }else{
-    
+- (void)setCelliconsArray:(NSArray *)imageStrArray{
+    for(NSString *str in imageStrArray){
+        UIImage *image = [UIImage imageNamed:str];
+        [self.iconsArray addObject:image];
     }
 
 }
+
+
 @end

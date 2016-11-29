@@ -20,9 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSArray *arr = [NSArray arrayWithObjects:@"gs",@"ddd",@"rrrr",@"asdfs" ,nil];
+    NSArray *arr = [NSArray arrayWithObjects:@"gs",@"ddd",@"rrrr",nil];
     self.dropMenu = [[YTDropMenu alloc ]initWithDataSource:arr NavTitile:@"HIHA" ToNavigationController:self.navigationController];
     self.dropMenu.isMultiselect = YES;
+    NSArray *array = @[@"1",@"2",@"3"];
+    [self.dropMenu setCelliconsArray:array];
     self.dropMenu.delegate = self;
 }
 

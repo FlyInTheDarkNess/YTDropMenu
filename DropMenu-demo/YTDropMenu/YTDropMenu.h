@@ -45,6 +45,8 @@
 
 @property (nonatomic, weak) id <YTDropMenuDelegate> delegate;
 
+@property (nonatomic,strong)NSMutableArray *iconsArray;
+
 - (instancetype)initWithDataSource:(NSArray *)array
                          NavTitile:(NSString *)title
             ToNavigationController:(UINavigationController *)navigationController;
@@ -55,5 +57,6 @@
 
 - (void)setAllColor:(UIColor *)color;
 
+- (void)setCelliconsArray:(NSArray *)imageStrArray;
 
 @end

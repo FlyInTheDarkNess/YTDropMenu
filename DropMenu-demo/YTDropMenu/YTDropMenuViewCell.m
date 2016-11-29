@@ -21,6 +21,9 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self addSubview:self.checkedView];
         self.backgroundColor = [UIColor clearColor];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.imageView.clipsToBounds = YES;
+        
     }
     
     return self;
