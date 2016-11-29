@@ -48,6 +48,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="backgroundImgView" destination="JI3-3O-7Fb" id="NeA-dd-hek"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -71,6 +74,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="a" width="293" height="220"/>
+        <image name="a" width="1024" height="625"/>
     </resources>
 </document>

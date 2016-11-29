@@ -10,6 +10,7 @@
 #import "YTDropMenu.h"
 
 @interface ViewController ()<YTDropMenuDelegate>
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImgView;
 
 @property (nonatomic,strong) YTDropMenu *dropMenu;
 
@@ -20,9 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSArray *arr = [NSArray arrayWithObjects:@"gs",@"ddd",@"rrrr",nil];
-    self.dropMenu = [[YTDropMenu alloc ]initWithDataSource:arr NavTitile:@"HIHA" ToNavigationController:self.navigationController];
-    self.dropMenu.isMultiselect = YES;
+    NSArray *arr = [NSArray arrayWithObjects:@"CELTICS",@"CLIPPERS",@"WARRIORS",nil];
+    self.dropMenu = [[YTDropMenu alloc ]initWithDataSource:arr NavTitile:@"Teams" ToNavigationController:self.navigationController];
     NSArray *array = @[@"1",@"2",@"3"];
     [self.dropMenu setCelliconsArray:array];
     self.dropMenu.delegate = self;
@@ -40,11 +40,18 @@
 }
 
 - (void)dropMenu:(YTDropMenu *)dropMenu didSelectIndexPath:(NSIndexSet *)selIndexPath{
-    NSLog(@"selected index  %ld", [selIndexPath firstIndex]);
+    if([selIndexPath firstIndex] == 0){
+    
+    }
+    
+    if([selIndexPath firstIndex] == 1){
+    
+    }
+    
+    if([selIndexPath firstIndex] == 1){
+    
+    }
 }
 
-- (void)dropMenu:(YTDropMenu *)dropMenu didMultiSelectIndexPaths:(NSIndexSet *)selIndexSet{
-    NSLog(@"mutiselected %@",selIndexSet.description);
-}
 
 @end
